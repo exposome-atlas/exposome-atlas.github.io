@@ -13,8 +13,13 @@
   @media screen and (min-width: 641px) { :root { --zoom: 0.9; } html { zoom: 0.9; } }
   body { margin: 0; background: #fff; font: 16px/1.4 Helvetica, Arial, sans-serif; color: #333; }
   .container { margin: 0 auto; max-width: 960px; padding: 0 16px; box-sizing: border-box; width: 100%; }
-  /* development (user, 2026-11-09: "this is for development, take the whole screen; no website title, no navigation"):
-     no site header, the viewer from the window's top */
+  /* the top bar (user, 2026-11-15: "let's have top bar everywhere for atlases"; was none here for development): the
+     site's name at the left, 20 px, as on the other atlases; the viewer's separator above the map hides it */
+  .wrapper-masthead { border-bottom: 1px solid #eee; }
+  .masthead { padding: 10px 16px; }
+  .site-name { margin: 0; font: 300 20px/1.35 "Helvetica Neue", Helvetica, Arial, sans-serif; letter-spacing: 1px; color: #555; }
+  .site-name a { color: inherit; text-decoration: none; }
+  #main { padding-top: 16px; }
   h1, h2, h3, h4 { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: #222; font-weight: normal; line-height: 1.7; margin: 1em 0 15px; }
   h2 { font-size: 20px; } h3 { font-size: 18px; }
   p { margin: 15px 0; }
@@ -113,13 +118,8 @@ html .m2-list-shut #m2-split { left: 0; }
 </style>
 </head>
 <body>
+<div class="wrapper-masthead"><header class="masthead"><h1 class="site-name"><a href="/">Expo atlas</a></h1></header></div>
 <div id="main" role="main" class="container">
-<style>
-  /* development mode: no site header (the layouts' .wrapper-masthead), the map window from 16 px under the top of the
-     page down to the download row */
-  .wrapper-masthead, header.masthead { display: none; }
-  #main { padding-top: 16px; }
-</style>
 <style>
   /* The look in one place: colours and corners the rules below use. A site or a style changes
      them by redefining them on :root (this :where() has no weight, so any later :root wins). */
@@ -1077,7 +1077,7 @@ html .m2-list-shut #m2-split { left: 0; }
   // the separator above the map window: hides or shows the site's header (none in development mode, which has none)
   (function () {
     var head = document.querySelector('.wrapper-masthead');
-    if (!head || true) return;
+    if (!head || false) return;
     var ts = document.createElement('div'), key = 'atlas-header-shut:' + location.pathname, drag = null;
     ts.id = 'm2-split-t'; ts.title = 'Drag up to hide the header, click to bring it back';
     document.querySelector('.m2-main').insertBefore(ts, view);
