@@ -30,7 +30,7 @@ jobs:
         # named files only, so nothing else in either repository is published; a new page file is added here
         run: |
           mkdir _site
-          cd _page && cp index.html .nojekyll favicon.ico favicon.svg favicon-32.png apple-touch-icon.png ../_site/ && cd ..
+          cd _page && cp index.html .nojekyll robots.txt favicon.ico favicon.svg favicon-32.png apple-touch-icon.png ../_site/ && cd ..
           cp -r _data_in/files _data_in/data _data_in/figures _data_in/maps.json _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
